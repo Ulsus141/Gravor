@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gravorsus | Cinematic Editor</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1822/1822899.png" type="image/png" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <style>
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: #000;
+        color: #fff;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 20px);
+        animation: bgScroll 20s linear infinite;
+      }
+      @keyframes bgScroll {
+        from { background-position: 0 0; }
+        to { background-position: 200px 200px; }
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        backdrop-filter: blur(12px);
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 48px;
+        border-bottom: 1px solid #1a1a1a;
+        animation: fadeInDown 1s ease forwards;
+        font-family: 'Bebas Neue', cursive;
+        font-weight: 700;
+      }
+      header h1 { font-size: 1.6rem; font-weight: 800; margin: 0; }
+      nav a {
+        margin-left: 32px;
+        color: #aaa;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s;
+      }
+      nav a:hover { color: #fff; }
+      .hero {
+        padding: 200px 20px 120px;
+        text-align: center;
+        background: linear-gradient(180deg, #111 0%, #000 100%);
+        animation: fadeIn 1.5s ease forwards;
+        position: relative;
+        z-index: 1;
+      }
+      .hero h2 { font-size: 3.4rem; font-weight: 800; margin-bottom: 20px; color: #ffffff; }
+      .hero p { font-size: 1.2rem; color: #bbb; }
+      .section {
+        padding: 100px 20px;
+        text-align: center;
+        max-width: 1100px;
+        margin: 0 auto;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease;
+        position: relative;
+        z-index: 1;
+      }
+      .section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .section h2 { font-size: 2.4rem; font-weight: 800; margin-bottom: 20px; color: #fff; }
+      .section p { font-size: 1.1rem; color: #999; max-width: 720px; margin: auto; }
+      .panel-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 50px;
+      }
+      .panel {
+        border-radius: 12px;
+        background: #0d0d0d;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        transition: transform 0.4s ease;
+        aspect-ratio: 9 / 16;
+      }
+      .panel:hover { transform: translateY(-5px); }
+      .panel iframe { width: 100%; height: 100%; border: none; }
+      .full-panel { grid-column: 1 / -1; aspect-ratio: 16 / 9; height: auto; }
+      .btn-discord {
+        display: inline-block;
+        padding: 12px 32px;
+        margin-top: 30px;
+        font-weight: 600;
+        border-radius: 30px;
+        background: linear-gradient(to right, #7289da, #99aab5);
+        color: #fff;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+      }
+      .btn-discord:hover { transform: scale(1.05); }
+      footer {
+        padding: 60px 20px;
+        text-align: center;
+        background: #000;
+        border-top: 1px solid #1a1a1a;
+        font-size: 0.9rem;
+        color: #666;
+      }
+      .separator {
+        width: 100%;
+        height: 1px;
+        background: #333;
+        margin: 60px 0;
+        opacity: 0.8;
+      }
+      @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeInDown {
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+    <script>
+      window.addEventListener('scroll', () => {
+        document.querySelectorAll('.section').forEach(section => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) {
+            section.classList.add('visible');
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>Gravorsus</h1>
+      <nav>
+        <a href="#works">Works</a>
+        <a href="#why">Why Me</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h2>Crafting Cinematic Visuals</h2>
+      <p>Edits that punch. Effects that move. Stories that matter.</p>
+    </section>
+
+    <section class="section" id="works">
+      <h2>My Works</h2>
+      <p>A collection of short-form and full-length edits showcasing my cinematic style.</p>
+      <div class="panel-grid">
+        <div class="panel"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe></div>
+        <div class="panel"><iframe src="https://www.youtube.com/embed/kJQP7kiw5Fk" allowfullscreen></iframe></div>
+        <div class="panel"><iframe src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen></iframe></div>
+        <div class="separator"></div>
+        <div class="panel full-panel"><iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe></div>
+        <div class="separator"></div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <h2>Why Hire Me?</h2>
+      <p>I engineer emotion and impact through timing, pace, and energy. Every project gets my full dedication to polish and delivery.</p>
+    </section>
+
+    <div class="separator"></div>
+
+    <section class="section" id="rates">
+      <h2>Rates</h2>
+      <p>Simple pricing tailored to your footage length.</p>
+      <table style="margin: 40px auto 0; border-collapse: collapse; color: #ccc; font-size: 1.1rem; min-width: 400px;">
+        <thead>
+          <tr>
+            <th style="padding: 12px 24px; border-bottom: 1px solid #555; text-align: left;">Raw Footage Duration</th>
+            <th style="padding: 12px 24px; border-bottom: 1px solid #555; text-align: left;">Price (USD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 12px 24px;">Up to 40 minutes</td>
+            <td style="padding: 12px 24px;">$15</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 24px;">40+ minutes</td>
+            <td style="padding: 12px 24px;">$20</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 24px;">1 hour+</td>
+            <td style="padding: 12px 24px;">$25+</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="separator"></div>
+
+    <section class="section" id="experience">
+      <h2>Experience</h2>
+      <p>Years of hands-on editing with top tools in the industry.</p>
+      <table style="margin: 40px auto 0; border-collapse: collapse; color: #ccc; font-size: 1.1rem; min-width: 400px;">
+        <thead>
+          <tr>
+            <th style="padding: 12px 24px; border-bottom: 1px solid #555; text-align: left;">Software</th>
+            <th style="padding: 12px 24px; border-bottom: 1px solid #555; text-align: left;">Experience</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 12px 24px;">
+              <img src="3c923575-78c2-455f-b579-007d75c0b7bd.png" style="width: 20px; vertical-align: middle; margin-right: 8px; border-radius: 4px; object-fit: contain; aspect-ratio: 1/1; background-color: #fff;" onerror="this.style.display='none'"/>
+              <strong>Alight Motion</strong>
+            </td>
+            <td style="padding: 12px 24px;">Editing on here for 5 years</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 24px;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg" style="width: 20px; vertical-align: middle; margin-right: 8px;" onerror="this.style.display='none'"/>
+              <strong>After Effects</strong>
+            </td>
+            <td style="padding: 12px 24px;">Editing on here for 4 years</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 24px;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-original.svg" style="width: 20px; vertical-align: middle; margin-right: 8px;" onerror="this.style.display='none'"/>
+              <strong>Premiere Pro</strong>
+            </td>
+            <td style="padding: 12px 24px;">Editing on here for 4 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="separator"></div>
+
+    <section class="section" id="contact">
+      <h2>Contact Me</h2>
+      <p>Let’s collaborate. Reach out to me directly via Discord.</p>
+      <a href="https://discord.com/users/ulsus_" target="_blank" class="btn-discord">@ulsus_</a>
+    </section>
+
+    <footer>
+      © 2025 Gravorsus. All rights reserved.
+    </footer>
+  </body>
+</html>
